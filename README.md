@@ -16,7 +16,8 @@ be customized per call, rather than per restart.
 
 However, rather than get 'involved' with writing extensively in Java, this project
 takes the simplest approach possible to getting the REST server up-and-running
-(using SparkJava, not to be confused with Apache-Spark).
+(using [SparkJava](http://sparkjava.com/documentation.html), 
+not to be confused with [Apache-Spark](https://spark.apache.org/)).
 
 ## Goal
 
