@@ -19,20 +19,27 @@ crossPaths := false
 autoScalaLibrary := false
 
 // library dependencies. (orginization name) % (project name) % (version)
+
+// Old, irrelevant entries from another build.sbt -- delete soon
 libraryDependencies ++= Seq(
 //   "org.apache.commons" % "commons-math3" % "3.1.1",
 //   "org.fluentd" % "fluent-logger" % "0.2.10",
 //   "org.mockito" % "mockito-core" % "1.9.5" % "test"  // Test-only dependency
+)
 
+// These are for the SparkJava REST API piece
+libraryDependencies ++= Seq(
    "com.sparkjava" % "spark-core" % "2.2",
-   "com.google.code.gson" % "gson" % "2.3.1",
-   
-   // See : https://github.com/sistanlp/processors/blob/master/build.sbt
+   "com.google.code.gson" % "gson" % "2.3.1"
+)
+
+// These are for the CoreNLP piece
+//   See : https:/ /github.com/sistanlp/processors/blob/master/build.sbt 
+libraryDependencies ++= Seq(
    "edu.stanford.nlp" % "stanford-corenlp" % "3.5.2",
    "edu.stanford.nlp" % "stanford-corenlp" % "3.5.2" classifier "models"
 //   "edu.stanford.nlp" % "stanford-corenlp" % "3.5.2" classifier "models-chinese"
 //   "edu.stanford.nlp" % "stanford-corenlp" % "3.5.2" classifier "models-german"
 //   "edu.stanford.nlp" % "stanford-corenlp" % "3.5.2" classifier "models-spanish"
-
 )
 
