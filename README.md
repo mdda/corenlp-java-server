@@ -21,6 +21,30 @@ It should be simple to add to this project to create additional routes
 as required, and still be able to 'natively' control the way in which CoreNLP
 interacts with the text you supply.
 
+
+## Running
+
+This project is built using ```sbt``` - which I prefer due to my Scala tendencies.
+Note, however, that it contains no scala code itself.  If necessary, it should
+be easy to create a ```pom.xml``` file for maven, etc.
+
+To compile (which will take some time initially, since the CoreNLP 
+class files must be downloaded, and they are ~150Mb) just :
+```
+sbt
+compile
+```
+
+Running is then simply : 
+```
+run
+```
+
+The server should be visible at ```http://localhost:4567/hello```.
+
+There is also a 'health chec' at ```http://localhost:4567/ping```.
+
+
 ## License
 
 Since this embeds the GPL 2(+) CoreNLP project, all modifications and 
