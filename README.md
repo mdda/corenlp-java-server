@@ -1,6 +1,8 @@
 # corenlp-java-server
 Simple SparkJava wrapper for the Stanford CoreNLP parser
 
+## Currently in a non-working state
+
 ## Rationale
 
 In order to 'play' with [CoreNLP](http://nlp.stanford.edu/software/corenlp.shtml) 
