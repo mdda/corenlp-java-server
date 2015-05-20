@@ -7,15 +7,15 @@ In order to 'play' with [CoreNLP](http://nlp.stanford.edu/software/corenlp.shtml
 effectively, it makes sense to leave it running as a standalone process, 
 and query it using a simple REST API.
 
-One issue with the existing wrappers I found in other languages is that they 
+One issue with the existing wrappers in other languages is that they 
 don't seem to offer much control over the pipeline being used.  Often they
 just launch a command-line instance of CoreNLP, and 'what you get is what you get'.
 
 Therefore, this project is written in Java, so that the pipeline can
 be customized per call, rather than per restart.
 
-However, since I don't want to get 'too involved' with writing Java, this project
-takes the simplest approach I could find to getting the REST server up-and-running
+However, rather than get 'involved' with writing extensively in Java, this project
+takes the simplest approach possible to getting the REST server up-and-running
 (using SparkJava, not to be confused with Apache-Spark).
 
 ## Goal
