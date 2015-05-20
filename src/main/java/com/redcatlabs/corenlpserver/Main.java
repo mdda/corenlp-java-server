@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.Properties;
+import java.io.ByteArrayOutputStream;
 
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
@@ -16,7 +17,9 @@ public class Main {
 
     // See : http://sparkjava.com/documentation.html
     private static void runServer(final Properties props, final int server_port) {
-        port(server_port);  
+        port(server_port);
+        
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
         
         Gson gson = new Gson();
 
@@ -26,8 +29,19 @@ public class Main {
         });
         
         post("/parse", (request, response) -> {
-            return "NOT YET!";
-        });
+            String text = "This is a test of the parser.";
+            
+            Annotation document = new Annotation(text);
+            pipeline.annotate(document);
+            
+            //final ByteArrayOutputStream ostream = new ByteArrayOutputStream();
+            //pipeline.jsonPrint(document, ostream);
+            
+            //return response.body(ostream);
+            //return document;
+            
+            return document;
+        }, gson::toJson);
         
         // ResponseTransformer  :: To json
         // get("/hello", (request, response) -> new MyMessage("Hello World"), gson::toJson);
