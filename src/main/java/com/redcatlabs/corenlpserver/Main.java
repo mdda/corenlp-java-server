@@ -28,7 +28,8 @@ public class Main {
             return "pong";
         });
         
-        post("/parse", (request, response) -> {
+        get("/parse", (request, response) -> {  // for testing
+        //post("/parse", (request, response) -> {
             String text = "This is a test of the parser.";
             
             Annotation document = new Annotation(text);

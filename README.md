@@ -45,9 +45,7 @@ Running is then simply :
 run
 ```
 
-The server should be visible at ```http://localhost:4567/hello```.
-
-There is also a 'health chec' at ```http://localhost:4567/ping```.
+The server should be visible at ```http://localhost:4567/ping```.
 
 
 ## License
