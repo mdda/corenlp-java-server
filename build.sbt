@@ -25,6 +25,23 @@ libraryDependencies ++= Seq(
 //   "org.mockito" % "mockito-core" % "1.9.5" % "test"  // Test-only dependency
 
    "com.sparkjava" % "spark-core" % "2.2",
-   "com.google.code.gson" % "gson" % "2.3.1"
+   "com.google.code.gson" % "gson" % "2.3.1",
+   
+   // See : https://github.com/sistanlp/processors/blob/master/build.sbt
+   "edu.stanford.nlp" % "stanford-corenlp" % "3.5.2",
+   "edu.stanford.nlp" % "stanford-corenlp" % "3.5.2" classifier "models"
 )
 
+/*
+        <dependency>
+            <groupId>edu.stanford.nlp</groupId>
+            <artifactId>stanford-corenlp</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>edu.stanford.nlp</groupId>
+            <artifactId>stanford-corenlp</artifactId>
+            <version>3.4.1</version>
+            <classifier>models</classifier>
+        </dependency>
+*/
