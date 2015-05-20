@@ -49,6 +49,16 @@ run
 
 The server should be visible at ```http://localhost:4567/ping```.
 
+## Requirements
+
+Needs ```java``` and ```sbt``` (unless someone else wants to suggest a ```pom.xml```).
+
+On Fedora, these can be installed with : 
+
+```
+yum install java-1.8.0-openjdk-devel sbt
+```
+
 
 ## License
 
