@@ -3,8 +3,9 @@ Simple SparkJava wrapper for the Stanford CoreNLP parser
 
 ## Rationale
 
-In order to 'play' with [CoreNLP] effectively, it makes sense to leave it
-running as a standalone process, and query it using a simple REST API.
+In order to 'play' with [CoreNLP](http://nlp.stanford.edu/software/corenlp.shtml) 
+effectively, it makes sense to leave it running as a standalone process, 
+and query it using a simple REST API.
 
 One issue with the existing wrappers I found in other languages is that they 
 don't seem to offer much control over the pipeline being used.  Often they
