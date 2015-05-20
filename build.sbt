@@ -23,6 +23,8 @@ libraryDependencies ++= Seq(
 //   "org.apache.commons" % "commons-math3" % "3.1.1",
 //   "org.fluentd" % "fluent-logger" % "0.2.10",
 //   "org.mockito" % "mockito-core" % "1.9.5" % "test"  // Test-only dependency
-   "com.sparkjava" % "spark-core" % "2.2"
+
+   "com.sparkjava" % "spark-core" % "2.2",
+   "com.google.code.gson" % "gson" % "2.3.1"
 )
 
