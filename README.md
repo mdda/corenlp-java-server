@@ -1,8 +1,6 @@
 # corenlp-java-server
 Simple SparkJava wrapper for the Stanford CoreNLP parser
 
-## Currently in a non-working state
-
 ## Rationale
 
 In order to 'play' with [CoreNLP](http://nlp.stanford.edu/software/corenlp.shtml) 
@@ -39,15 +37,22 @@ To compile (which will take some time initially, since the CoreNLP
 class files must be downloaded, and they are ~150Mb) just :
 ```
 sbt
-compile
+### This is now an interactive session
+> compile
+
+### or, for on-change recompilation..
+> ~ compile
 ```
 
-Running is then simply : 
+Running is then simply (at the command line): 
 ```
-run
+sbt run
 ```
 
-The server should be visible at ```http://localhost:4567/ping```.
+The server should be visible at [http://localhost:4567/ping].
+
+And an example parse via [http://localhost:4567/test?txt="This is a test of the Stanford parser."],
+where you may need to replace the spaces in the txt string as '%20'.
 
 ## Requirements
 

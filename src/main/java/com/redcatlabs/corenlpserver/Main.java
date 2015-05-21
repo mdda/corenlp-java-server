@@ -1,17 +1,21 @@
 package com.redcatlabs.corenlpserver;
 
+import java.io.IOException;
+import java.util.Properties;
+import java.io.CharArrayWriter;
+
 import static spark.Spark.*;
 
 //ResponseTransformer  :: To json
 import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.util.Properties;
-import java.io.ByteArrayOutputStream;
-
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.StringUtils;
+
+// See CoreNLP/src/edu/stanford/nlp/pipeline/StanfordCoreNLP.java :489
+//import java.io.ByteArrayOutputStream;
+//import edu.stanford.nlp.pipeline.JSONOutputter;
 
 public class Main {
 
@@ -21,33 +25,47 @@ public class Main {
         
         StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
         
-        Gson gson = new Gson();
-
-        // Initial connection will be on http://127.0.0.1:4567/hello
+        // Test the basic server operation with http://localhost:4567/ping
         get("/ping", (request, response) -> {
             return "pong";
         });
         
-        get("/parse", (request, response) -> {  // for testing
-        //post("/parse", (request, response) -> {
-            String text = "This is a test of the parser.";
+        // Test the parser server with :
+        // http://localhost:4567/test?txt="This%20is%20a%20test%20of%20the%20Stanford%20parser."
+        get("/test", (request, response) -> {  // for testing
+            String txt = request.queryParams("txt");
+            if(txt == null) {
+                txt = "Hello world.";
+            }
+            
+            Annotation document = new Annotation(txt);
+            pipeline.annotate(document);
+            
+            final CharArrayWriter writer = new CharArrayWriter();
+            pipeline.jsonPrint(document, writer);
+            
+            return writer;
+        });
+  
+        // ResponseTransformer  :: To json (for simple-to-serialize objects)
+        // get("/hello", (request, response) -> new MyMessage("Hello World"), gson::toJson);
+
+/*
+ * To make this formulation work, looks like we'll have to do our own serialization : 
+ * See : http://www.javacreed.com/gson-serialiser-example/
+ * and : https://github.com/perwendel/spark/blob/master/README.md
+ * 
+        Gson gson = new Gson();
+
+        get("/test-json-direct", (request, response) -> {  // for testing
+            String text = "This is a test of the Stanford University parser.";
             
             Annotation document = new Annotation(text);
             pipeline.annotate(document);
             
-            //final ByteArrayOutputStream ostream = new ByteArrayOutputStream();
-            //pipeline.jsonPrint(document, ostream);
-            
-            //return response.body(ostream);
-            //return document;
-            
             return document;
-        }, gson::toJson);
-        
-        // ResponseTransformer  :: To json
-        // get("/hello", (request, response) -> new MyMessage("Hello World"), gson::toJson);
-        
-        // CoreNLP also has : public void jsonPrint(Annotation annotation, Writer w) throws IOException
+        }, json());
+*/
 
     }
     
