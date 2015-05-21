@@ -7,7 +7,13 @@ import java.io.CharArrayWriter;
 import static spark.Spark.*;
 
 //ResponseTransformer  :: To json
-import com.google.gson.Gson;
+//import com.google.gson.Gson;
+
+import org.json.simple.JSONValue;
+import org.json.simple.JSONObject;
+//import org.json.simple.JSONArray;
+//import org.json.simple.parser.JSONParser;
+//import org.json.simple.parser.ParseException;
 
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
@@ -23,7 +29,12 @@ public class Main {
     private static void runServer(final Properties props, final int server_port) {
         port(server_port);
         
-        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+        StanfordCoreNLP pipeline_cli = new StanfordCoreNLP(props);
+        
+        Properties props_ner = new Properties();
+        // props_ner.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref"); // Works
+        props_ner.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse"); // Must have 'parse' in it
+        StanfordCoreNLP pipeline_ner = new StanfordCoreNLP(props_ner);
         
         // Test the basic server operation with http://localhost:4567/ping
         get("/ping", (request, response) -> {
@@ -39,10 +50,10 @@ public class Main {
             }
             
             Annotation document = new Annotation(txt);
-            pipeline.annotate(document);
+            pipeline_cli.annotate(document);
             
             final CharArrayWriter writer = new CharArrayWriter();
-            pipeline.jsonPrint(document, writer);
+            pipeline_cli.jsonPrint(document, writer);
             
             return writer;
         });
@@ -67,6 +78,28 @@ public class Main {
         }, json());
 */
 
+        // curl -X POST http://localhost:4567/ner -d '{"txt":"I went to London."}'
+        post("/ner", (request, response) -> {  
+            JSONObject json = (JSONObject) JSONValue.parse(request.body());
+            
+            String txt = (String) json.get("txt");
+            if(txt == null) {
+                txt = "Post a txt field to make this work.";
+            }
+            
+            Annotation document = new Annotation(txt);
+            pipeline_ner.annotate(document);
+            
+            final CharArrayWriter writer = new CharArrayWriter();
+            pipeline_ner.jsonPrint(document, writer);
+            
+            return writer;
+        });
+  
+        // We're assuming all json responses
+        after((req, res) -> {
+            res.type("application/json");
+        });
     }
     
     public static void main(String[] args) throws IOException {
