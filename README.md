@@ -51,24 +51,27 @@ sbt run
 
 The server should be visible at [http://localhost:4567/ping](http://localhost:4567/ping).
 
-And an example parse via [http://localhost:4567/test?txt="This is a test of the Stanford parser."](http://localhost:4567/test?txt="This is a test of the Stanford parser.") ,
-where you may need to replace the spaces in the txt string as '%20'.
+And an example parse via [http://localhost:4567/test?txt="This is a test of the Stanford parser."](http://localhost:4567/test?txt="This is a test of the Stanford parser."),
+where you may need to replace the spaces in the txt string with ```%20```.
 
 ## Requirements
 
 Needs ```java``` and ```sbt``` (unless someone else wants to suggest a ```pom.xml```).
 
-On Fedora, these can be installed with : 
+On Fedora, these two tools can be installed with : 
 
 ```
 yum install java-1.8.0-openjdk-devel sbt
 ```
 
+In ```Main.java``` the code makes use of Java 8 closures, but it shouldn't be hard to 
+re-do this to be compilable under previous Java versions.
+
 
 ## License
 
-Since this embeds the GPL 2(+) CoreNLP project, all modifications and 
-extensions will also be GPL 2(+).
+Since this embeds the GPL2(+) CoreNLP project, all modifications and 
+extensions will also be GPL2(+).
 
 Note that simply using this as a REST API service doesn't mean a client 
 using the HTTP API must be GPL.  If that were Stanford's intention, 
