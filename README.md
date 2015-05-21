@@ -1,5 +1,5 @@
 # corenlp-java-server
-Simple SparkJava wrapper for the Stanford CoreNLP parser
+Simple Java REST API wrapper for the Stanford CoreNLP parser
 
 ## Rationale
 
