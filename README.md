@@ -46,7 +46,7 @@ sbt
 
 Running is then simply (at the command line): 
 ```
-sbt run
+sbt "run -port 4567"
 ```
 
 The server should be visible at [http://localhost:4567/ping](http://localhost:4567/ping).
