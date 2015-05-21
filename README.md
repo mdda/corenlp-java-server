@@ -14,7 +14,7 @@ just launch a command-line instance of CoreNLP, and 'what you get is what you ge
 Therefore, this project is written in Java, so that the pipeline can
 be customized per call, rather than per restart.
 
-However, rather than get 'involved' with writing extensively in Java, this project
+However, rather than get *involved* with writing extensively in Java, this project
 takes the simplest approach possible to getting the REST server up-and-running
 (using [SparkJava](http://sparkjava.com/documentation.html), 
 not to be confused with [Apache-Spark](https://spark.apache.org/)).
