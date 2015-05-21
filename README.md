@@ -49,9 +49,9 @@ Running is then simply (at the command line):
 sbt run
 ```
 
-The server should be visible at http://localhost:4567/ping .
+The server should be visible at [http://localhost:4567/ping](http://localhost:4567/ping).
 
-And an example parse via http://localhost:4567/test?txt="This is a test of the Stanford parser." ,
+And an example parse via [http://localhost:4567/test?txt="This is a test of the Stanford parser."](http://localhost:4567/test?txt="This is a test of the Stanford parser.") ,
 where you may need to replace the spaces in the txt string as '%20'.
 
 ## Requirements
