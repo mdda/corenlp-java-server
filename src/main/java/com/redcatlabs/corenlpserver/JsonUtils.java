@@ -5,16 +5,11 @@ import java.io.CharArrayWriter;
 
 import spark.ResponseTransformer;
 
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.pipeline.Annotation;
+
 //ResponseTransformer  :: To json
 //import com.google.gson.Gson;
-
-// See CoreNLP/src/edu/stanford/nlp/pipeline/StanfordCoreNLP.java :489
-//import java.io.ByteArrayOutputStream;
-//import edu.stanford.nlp.pipeline.JSONOutputter;
-
-import edu.stanford.nlp.pipeline.Annotation;
-import edu.stanford.nlp.pipeline.StanfordCoreNLP;
-import edu.stanford.nlp.util.StringUtils;
 
 /* 
  * To make a clean Json response, we'll have to do our own serialization
@@ -25,6 +20,10 @@ import edu.stanford.nlp.util.StringUtils;
 */
 
 public class JsonUtils {
+    // See also : CoreNLP/src/edu/stanford/nlp/pipeline/StanfordCoreNLP.java :489
+    //   import java.io.ByteArrayOutputStream;
+    //   import edu.stanford.nlp.pipeline.JSONOutputter;
+
     public static CharArrayWriter toJsonStanford(StanfordCoreNLP pipeline, Annotation document) throws IOException {
         final CharArrayWriter writer = new CharArrayWriter();
         pipeline.jsonPrint(document, writer);

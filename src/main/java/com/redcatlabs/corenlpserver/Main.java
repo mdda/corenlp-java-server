@@ -12,8 +12,8 @@ import org.json.simple.JSONObject;
 //import org.json.simple.parser.JSONParser;
 //import org.json.simple.parser.ParseException;
 
-import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.util.StringUtils;
 
 public class Main {
