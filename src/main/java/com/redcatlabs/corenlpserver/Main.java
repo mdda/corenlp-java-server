@@ -6,9 +6,6 @@ import java.io.CharArrayWriter;
 
 import static spark.Spark.*;
 
-//ResponseTransformer  :: To json
-//import com.google.gson.Gson;
-
 import org.json.simple.JSONValue;
 import org.json.simple.JSONObject;
 //import org.json.simple.JSONArray;
@@ -18,10 +15,6 @@ import org.json.simple.JSONObject;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.StringUtils;
-
-// See CoreNLP/src/edu/stanford/nlp/pipeline/StanfordCoreNLP.java :489
-//import java.io.ByteArrayOutputStream;
-//import edu.stanford.nlp.pipeline.JSONOutputter;
 
 public class Main {
 
@@ -58,25 +51,16 @@ public class Main {
             return writer;
         });
   
+/*            
+            final CharArrayWriter writer = new CharArrayWriter();
+            pipeline_cli.jsonPrint(document, writer);
+            
+            return writer;
+        });
+*/
+        
         // ResponseTransformer  :: To json (for simple-to-serialize objects)
         // get("/hello", (request, response) -> new MyMessage("Hello World"), gson::toJson);
-
-/*
- * To make this formulation work, looks like we'll have to do our own serialization : 
- * See : http://www.javacreed.com/gson-serialiser-example/
- * and : https://github.com/perwendel/spark/blob/master/README.md
- * 
-        Gson gson = new Gson();
-
-        get("/test-json-direct", (request, response) -> {  // for testing
-            String text = "This is a test of the Stanford University parser.";
-            
-            Annotation document = new Annotation(text);
-            pipeline.annotate(document);
-            
-            return document;
-        }, json());
-*/
 
         // curl -X POST http://localhost:4567/ner -d '{"txt":"I went to London."}'
         post("/ner", (request, response) -> {  
