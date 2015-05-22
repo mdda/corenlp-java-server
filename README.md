@@ -54,6 +54,16 @@ The server should be visible at [http://localhost:4567/ping](http://localhost:45
 And an example parse via [http://localhost:4567/test?txt="This is a test of the Stanford parser."](http://localhost:4567/test?txt="This is a test of the Stanford parser."),
 where you may need to replace the spaces in the txt string with ```%20```.
 
+There is also a ```POST``` endpoint example given in ```Main.java```, 
+whereby the ```txt``` parameter can be specified in the HTTP body.  This can be 
+accessed as follows :
+
+```
+curl -X POST http://localhost:4567/ner \
+  -d '{"txt":"I went to London."}'
+```
+
+
 ## Requirements
 
 Needs ```java``` and ```sbt``` (unless someone else wants to suggest a ```pom.xml```).
