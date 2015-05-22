@@ -45,19 +45,8 @@ public class Main {
             Annotation document = new Annotation(txt);
             pipeline_cli.annotate(document);
             
-            final CharArrayWriter writer = new CharArrayWriter();
-            pipeline_cli.jsonPrint(document, writer);
-            
-            return writer;
+            return JsonUtils.toJsonStanford(pipeline_cli, document); 
         });
-  
-/*            
-            final CharArrayWriter writer = new CharArrayWriter();
-            pipeline_cli.jsonPrint(document, writer);
-            
-            return writer;
-        });
-*/
         
         // ResponseTransformer  :: To json (for simple-to-serialize objects)
         // get("/hello", (request, response) -> new MyMessage("Hello World"), gson::toJson);
@@ -73,11 +62,8 @@ public class Main {
             
             Annotation document = new Annotation(txt);
             pipeline_ner.annotate(document);
-            
-            final CharArrayWriter writer = new CharArrayWriter();
-            pipeline_ner.jsonPrint(document, writer);
-            
-            return writer;
+
+            return JsonUtils.toJsonStanford(pipeline_ner, document); 
         });
   
         // We're assuming all json responses
