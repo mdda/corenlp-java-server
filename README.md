@@ -42,9 +42,14 @@ sbt
 
 ### or, for on-file-change recompilation:
 > ~ compile
+
+### run on the default port:
+> run
+### or (specifying the port configuration explicitly):
+> run -port 4567
 ```
 
-Running is then simply (at the command line): 
+Running from the command line directly is: 
 ```
 sbt "run -port 4567"
 ```
