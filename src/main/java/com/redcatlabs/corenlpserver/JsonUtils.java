@@ -8,6 +8,8 @@ import spark.ResponseTransformer;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.pipeline.Annotation;
 
+import edu.stanford.nlp.ling.CoreAnnotations;
+
 //ResponseTransformer  :: To json
 //import com.google.gson.Gson;
 
@@ -40,8 +42,12 @@ public class JsonUtils {
     }
 
     // CoreNLP/src/edu/stanford/nlp/pipeline/JSONOutputter.java
+    // https://github.com/stanfordnlp/CoreNLP/blob/eafbd9a9ddd6b06a0ed2a1b979b60f532b9be3cc/src/edu/stanford/nlp/pipeline/JSONOutputter.java
     public static CharArrayWriter toJsonNERonly(StanfordCoreNLP pipeline, Annotation document) throws IOException {
         final CharArrayWriter writer = new CharArrayWriter();
+        if (document.get(CoreAnnotations.TokensAnnotation.class) != null) {
+            writer.write("Document has tokens");
+        }   
         //pipeline.jsonPrint(document, writer);
         return writer;
     }

@@ -63,7 +63,7 @@ public class Main {
             Annotation document = new Annotation(txt);
             pipeline_ner.annotate(document);
 
-            return JsonUtils.toJsonStanford(pipeline_ner, document); 
+            return JsonUtils.toJsonNERonly(pipeline_ner, document); 
         });
   
         // We're assuming all json responses
