@@ -85,8 +85,8 @@ re-do this to be compilable under previous Java versions.
 
 ## License
 
-Since this embeds the GPL2(+) CoreNLP project, all modifications and 
-extensions will also be GPL2(+).
+Since this embeds the GPL2(+) CoreNLP project (https://github.com/stanfordnlp/CoreNLP), 
+all modifications and extensions will also be GPL2(+).
 
 Note that simply using this as a REST API service doesn't mean a client 
 using the HTTP API must be GPL.  If that were Stanford's intention, 

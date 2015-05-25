@@ -39,4 +39,10 @@ public class JsonUtils {
         return JsonUtils::toJson;
     }
 
+    // CoreNLP/src/edu/stanford/nlp/pipeline/JSONOutputter.java
+    public static CharArrayWriter toJsonNERonly(StanfordCoreNLP pipeline, Annotation document) throws IOException {
+        final CharArrayWriter writer = new CharArrayWriter();
+        //pipeline.jsonPrint(document, writer);
+        return writer;
+    }
 }
