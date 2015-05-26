@@ -61,7 +61,7 @@ public class JsonUtils {
     }
     
     public static Properties jsonToProperties(JSONObject json) {
-        Properties prop = new Properties();
+        Properties prop = new Properties();  // Would be nicer if could use 'map{}', but...
         json.keySet().stream()
             .forEach( key -> {
                 prop.setProperty((String)key, (String) json.get(key));
