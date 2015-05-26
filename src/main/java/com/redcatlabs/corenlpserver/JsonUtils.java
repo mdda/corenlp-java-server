@@ -49,7 +49,7 @@ public class JsonUtils {
         String as_str = "";
         if (document.get(CoreAnnotations.TokensAnnotation.class) != null) {
             as_str = document.get(CoreAnnotations.TokensAnnotation.class).stream()
-                .filter(token -> !token.ner().equals("O")) 
+                // .filter(token -> !token.ner().equals("O")) 
                 .map(token -> {
                     return "[\""+token.ner()+"\","+token.beginPosition()+","+token.endPosition()+"]";
                 }).collect(Collectors.joining(","));
