@@ -3,14 +3,17 @@ package com.redcatlabs.corenlpserver;
 import java.io.IOException;
 import java.io.CharArrayWriter;
 import java.util.stream.Collectors;
+import java.util.Properties;
 
 import spark.ResponseTransformer;
-
 
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.pipeline.Annotation;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
+
+import org.json.simple.JSONObject;
+
 
 //ResponseTransformer  :: To json
 //import com.google.gson.Gson;
@@ -55,5 +58,11 @@ public class JsonUtils {
                 }).collect(Collectors.joining(",","[","]"));
         }
         return as_str;
+    }
+    
+    public static Properties jsonToProperties(JSONObject json) {
+        Properties prop = new Properties();
+        // TODO : parsing here
+        return prop;
     }
 }

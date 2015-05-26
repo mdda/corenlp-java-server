@@ -63,7 +63,12 @@ public class Main {
             JSONObject json = (JSONObject) JSONValue.parse(request.body());
             
             Properties props = props_ner; // Default
-            // Test for 'props' hash in POSTed JSON
+            if(json.containsKey("props")) {  // Test here for 'props' hash in POSTed JSON
+                props = JsonUtils.jsonToProperties((JSONObject)json.get("props"));
+                if(!pipelines.containsKey(props)) {
+                    pipelines.put(props, new StanfordCoreNLP(props));
+                }
+            }
             
             StanfordCoreNLP pipeline = pipelines.get(props);
             
