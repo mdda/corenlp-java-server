@@ -45,14 +45,14 @@ public class JsonUtils {
 
     // CoreNLP/src/edu/stanford/nlp/pipeline/JSONOutputter.java
     // https://github.com/stanfordnlp/CoreNLP/blob/eafbd9a9ddd6b06a0ed2a1b979b60f532b9be3cc/src/edu/stanford/nlp/pipeline/JSONOutputter.java
-    public static String toJsonNERonly(StanfordCoreNLP pipeline, Annotation document) throws IOException {
+    public static String toJsonNERonly(StanfordCoreNLP pipeline, Annotation document) {
         String as_str = "[]";
         if (document.get(CoreAnnotations.TokensAnnotation.class) != null) {
             as_str = document.get(CoreAnnotations.TokensAnnotation.class).stream()
                 // .filter(token -> !token.ner().equals("O")) 
                 .map(token -> {
                     return "[\""+token.ner()+"\","+token.beginPosition()+","+token.endPosition()+"]";
-                }).collect(Collectors.joining(","));
+                }).collect(Collectors.joining(",","[","]"));
         }
         return as_str;
     }

@@ -5,8 +5,8 @@ import java.io.CharArrayWriter;
 
 import java.util.Map;
 import java.util.HashMap;
-//import java.util.Collections;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import static spark.Spark.*;
 
@@ -62,20 +62,18 @@ public class Main {
         post("/ner", (request, response) -> {  
             JSONObject json = (JSONObject) JSONValue.parse(request.body());
             
-            String txt = (String) ((JSONArray) json.get("doc")).get(0);
-            if(txt == null) {
-                txt = "Post a txt field to make this work.";
-            }
-            
             Properties props = props_ner; // Default
             // Test for 'props' hash in POSTed JSON
             
             StanfordCoreNLP pipeline = pipelines.get(props);
             
-            Annotation document = new Annotation(txt);
-            pipeline.annotate(document);
-
-            return JsonUtils.toJsonNERonly(pipeline, document); 
+            return ((JSONArray)json.get("doc")).stream()
+                .map(doc -> {
+                    Annotation document = new Annotation((String)doc);
+                    pipeline.annotate(document);
+                    return JsonUtils.toJsonNERonly(pipeline, document); 
+                })
+                .collect(Collectors.joining(",\n", "{ner:[\n", "\n]}"));
         });
 
         // We're assuming all json responses
