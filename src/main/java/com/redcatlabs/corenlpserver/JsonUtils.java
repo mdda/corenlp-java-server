@@ -2,8 +2,10 @@ package com.redcatlabs.corenlpserver;
 
 import java.io.IOException;
 import java.io.CharArrayWriter;
+import java.util.stream.Collectors;
 
 import spark.ResponseTransformer;
+
 
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -43,12 +45,21 @@ public class JsonUtils {
 
     // CoreNLP/src/edu/stanford/nlp/pipeline/JSONOutputter.java
     // https://github.com/stanfordnlp/CoreNLP/blob/eafbd9a9ddd6b06a0ed2a1b979b60f532b9be3cc/src/edu/stanford/nlp/pipeline/JSONOutputter.java
-    public static CharArrayWriter toJsonNERonly(StanfordCoreNLP pipeline, Annotation document) throws IOException {
-        final CharArrayWriter writer = new CharArrayWriter();
+    public static String toJsonNERonly(StanfordCoreNLP pipeline, Annotation document) throws IOException {
+        String as_str = "";
         if (document.get(CoreAnnotations.TokensAnnotation.class) != null) {
-            writer.write("Document has tokens");
-        }   
+            as_str = document.get(CoreAnnotations.TokensAnnotation.class).stream()
+                .map(token -> {
+                    return "["+token.ner()+"]";
+                }).collect(Collectors.joining(","));
+/*                
+                .map(token -> {
+                    try {
+                        writer.write("["+token.ner()+"]");
+                    } catch(IOException e) {}
+*/
+        }
         //pipeline.jsonPrint(document, writer);
-        return writer;
+        return as_str;
     }
 }
