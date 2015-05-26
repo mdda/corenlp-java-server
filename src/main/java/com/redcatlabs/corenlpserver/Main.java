@@ -83,7 +83,7 @@ public class Main {
                     pipeline.annotate(document);
                     return JsonUtils.toJsonNERonly(pipeline, document); 
                 })
-                .collect(Collectors.joining(",\n", "{ner:[\n", "\n]}"));
+                .collect(Collectors.joining(",\n", "{\"ner\":[\n", "\n]}"));
         });
 
         // We're assuming all json responses
