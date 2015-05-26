@@ -58,7 +58,10 @@ public class Main {
         
         pipelines.put(props_ner, new StanfordCoreNLP(props_ner));  
         
-        // curl -X POST http://localhost:4567/ner -d '{"doc":["Jack and Jill went up the hill."]}'
+/*
+        curl -X POST http://localhost:4567/ner \
+             -d '{"doc":["Jack and Jill went up the hill."],"props":{"annotations":"tokenize, ssplit, pos, lemma, ner, parse"}}'
+*/
         post("/ner", (request, response) -> {  
             JSONObject json = (JSONObject) JSONValue.parse(request.body());
             

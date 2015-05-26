@@ -62,7 +62,10 @@ public class JsonUtils {
     
     public static Properties jsonToProperties(JSONObject json) {
         Properties prop = new Properties();
-        // TODO : parsing here
+        json.keySet().stream()
+            .forEach( key -> {
+                prop.setProperty((String)key, (String) json.get(key));
+            });
         return prop;
     }
 }
