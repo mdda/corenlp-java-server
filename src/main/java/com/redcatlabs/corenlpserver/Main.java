@@ -60,7 +60,9 @@ public class Main {
         
 /*
         curl -X POST http://localhost:4567/ner \
-             -d '{"doc":["Jack and Jill went up the hill."],"props":{"annotations":"tokenize, ssplit, pos, lemma, ner, parse"}}'
+          -d '{"doc":["Jack and Jill went up the hill."],
+               "props":{"annotations":"tokenize, ssplit, pos, lemma, ner, parse"}
+              }'
 */
         post("/ner", (request, response) -> {  
             JSONObject json = (JSONObject) JSONValue.parse(request.body());

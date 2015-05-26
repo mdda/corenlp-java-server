@@ -65,7 +65,9 @@ accessed as follows :
 
 ```
 curl -X POST http://localhost:4567/ner \
-  -d '{"txt":"I went to London."}'
+  -d '{"doc":["Jack and Jill went up the hill."],
+       "props":{"annotations":"tokenize, ssplit, pos, lemma, ner, parse"}
+      }'
 ```
 
 
