@@ -25,6 +25,10 @@ It should be simple to add to this project to create additional routes
 as required, and still be able to 'natively' control the way in which CoreNLP
 interacts with the text you supply.
 
+The sample routes includs a ```/ner``` POST route (with content data provided 
+in POSTed json), that allows the processing of more than one 
+document (data in ```doc:[]```) by the current pipeline, 
+and also the (cached) usage of pipelines defined by ```props:{}```.
 
 ## Running
 
