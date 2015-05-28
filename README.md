@@ -74,6 +74,7 @@ curl -X POST http://localhost:4567/ner \
       }'
 ```
 
+Initial runs indicate that the parse speed is of the order of 10 sentences a second, and the parser will automatically make use of all the cores of your machine, if you let it.
 
 ## Requirements
 
