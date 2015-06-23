@@ -27,6 +27,7 @@ public class Main {
         port(server_port);
         
         Map<Properties, StanfordCoreNLP> pipelines = new HashMap<Properties, StanfordCoreNLP>();
+        // props_cli.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner,parse,dcoref"); // standard
         pipelines.put(props_cli, new StanfordCoreNLP(props_cli));  // This map includes the 'cli' props pipeline
         
         // Test the basic server operation with http://localhost:4567/ping
@@ -53,16 +54,17 @@ public class Main {
         // get("/hello", (request, response) -> new MyMessage("Hello World"), gson::toJson);
 
         Properties props_ner = new Properties();
-        // props_ner.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref"); // Works
-        props_ner.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse"); // Must have 'parse' in it
-        
+        props_ner.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner");
+        props_ner.setProperty("tokenize.whitespace", "true");
+        props_ner.setProperty("ssplit.eolonly", "true");
+
         pipelines.put(props_ner, new StanfordCoreNLP(props_ner));  
         
 /*
         curl -X POST http://localhost:4567/ner                       \
-          -d '{"doc":["Jack and Jill did n\'t go up the hill .\nHowever , Jill fell down ."],
+          -d '{"doc":["Jack and Jill did n'\''t go up the hill .\nHowever , Jill fell down ."],
                "props":{
-                 "annotators":"tokenize,ssplit,pos,lemma,ner,parse",
+                 "annotators":"tokenize,ssplit,pos,lemma,ner",
                  "tokenize.whitespace":"true",
                  "ssplit.eolonly":"true"
                }
