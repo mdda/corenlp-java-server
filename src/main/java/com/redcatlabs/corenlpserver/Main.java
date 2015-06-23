@@ -59,9 +59,13 @@ public class Main {
         pipelines.put(props_ner, new StanfordCoreNLP(props_ner));  
         
 /*
-        curl -X POST http://localhost:4567/ner \
-          -d '{"doc":["Jack and Jill went up the hill."],
-               "props":{"annotators":"tokenize, ssplit, pos, lemma, ner, parse"}
+        curl -X POST http://localhost:4567/ner                       \
+          -d '{"doc":["Jack and Jill did n\'t go up the hill .\nHowever , Jill fell down ."],  \
+               "props":{                                             \
+                 "annotators":"tokenize,ssplit,pos,lemma,ner,parse", \
+                 "tokenize.whitespace":"true",                       \
+                 "ssplit.eolonly":"true"                             \
+               }                                                     \
               }'
 */
         post("/ner", (request, response) -> {  

@@ -64,7 +64,7 @@ public class JsonUtils {
         Properties prop = new Properties();  // Would be nicer if could use 'map{}', but...
         json.keySet().stream()
             .forEach( key -> {
-                prop.setProperty((String)key, (String) json.get(key));
+                prop.setProperty((String) key, (String) json.get(key));
             });
         return prop;
     }
