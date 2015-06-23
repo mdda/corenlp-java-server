@@ -90,6 +90,25 @@ In ```Main.java``` the code makes use of Java 8 closures, but it shouldn't be ha
 re-do this to be compilable under previous Java versions.
 
 
+## Additional NER models : 
+
+These can be downloaded from Stanford if you need them specifically (the NER
+works just fine using the models already included, though) :
+
+```
+wget http://nlp.stanford.edu/software/conll.closed.iob2.crf.ser.gz    #  97Mb
+wget http://nlp.stanford.edu/software/conll.distsim.iob2.crf.ser.gz   # 115Mb
+```
+
+These can be downloaded into (for instance) this repo's base directory, 
+and accessed by using the property : 
+
+```
+"ner.model":"conll.closed.iob2.crf.ser.gz"   ## IOB2 output (different from regular NER models)
+"ner.model":"conll.distsim.iob2.crf.ser.gz"  ## java.lang.OutOfMemoryError: GC overhead limit exceeded
+```
+
+
 ## License
 
 Since this embeds the GPL2(+) CoreNLP project (https://github.com/stanfordnlp/CoreNLP), 

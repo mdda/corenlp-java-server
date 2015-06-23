@@ -11,7 +11,8 @@ curl -X POST http://localhost:4567/ner                         \
        "props":{
          "annotators":"tokenize,ssplit,pos,lemma,ner",
          "tokenize.whitespace":"true",
-         "ssplit.eolonly":"true"
+         "ssplit.eolonly":"true",
+         "ner.model":"edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz"
        }
       }'
 

@@ -18,6 +18,8 @@ crossPaths := false
 // This forbids including Scala related libraries into the dependency
 autoScalaLibrary := false
 
+javaOptions += "-Xmx1G"
+
 // library dependencies. (organization name) % (project name) % (version)
 
 // Old, irrelevant entries from another build.sbt -- delete soon

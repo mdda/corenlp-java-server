@@ -27,7 +27,13 @@ public class Main {
         port(server_port);
         
         Map<Properties, StanfordCoreNLP> pipelines = new HashMap<Properties, StanfordCoreNLP>();
+        // Loaded by default :
         // props_cli.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner,parse,dcoref"); // standard
+        // props_cli.setProperty("ner.model", "edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz");
+        // props_cli.setProperty("ner.model", "edu/stanford/nlp/models/ner/english.muc.7class.distsim.crf.ser.gz");
+        // props_cli.setProperty("ner.model", "edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz");
+        props_cli.setProperty("ner.model","edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz");
+        
         pipelines.put(props_cli, new StanfordCoreNLP(props_cli));  // This map includes the 'cli' props pipeline
         
         // Test the basic server operation with http://localhost:4567/ping
@@ -58,6 +64,8 @@ public class Main {
         props_ner.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner");
         props_ner.setProperty("tokenize.whitespace", "true");
         props_ner.setProperty("ssplit.eolonly", "true");
+        // Add something here, or it will load all three default models
+        props_ner.setProperty("ner.model","edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz");
 
         pipelines.put(props_ner, new StanfordCoreNLP(props_ner));  
         
