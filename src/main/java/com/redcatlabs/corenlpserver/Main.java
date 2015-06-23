@@ -72,13 +72,10 @@ public class Main {
 */
         post("/ner", (request, response) -> {  
             JSONObject json = (JSONObject) JSONValue.parse(request.body());
-            System.out.println("Parsed Body");
             
             Properties props = props_ner; // Default
             if(json.containsKey("props")) {  // Test here for 'props' hash in POSTed JSON
-                System.out.println("Got new props");
                 props = JsonUtils.jsonToProperties((JSONObject)json.get("props"));
-                System.out.println("Parsed new props");
                 if(!pipelines.containsKey(props)) {
                     System.out.println("Got new props - adding to cache");
                     pipelines.put(props, new StanfordCoreNLP(props));
@@ -86,7 +83,6 @@ public class Main {
             }
             
             StanfordCoreNLP pipeline = pipelines.get(props);
-            System.out.println("Got NER pipeline");
             
             return ((JSONArray)json.get("doc")).stream()
                 .map(doc -> {
@@ -116,7 +112,7 @@ public class Main {
                 server_port = Integer.parseInt(portString);
             }
         }
-        System.out.println("Processes args");
+        System.out.println("Processed args");
         runServer(props, server_port);
     }
 }

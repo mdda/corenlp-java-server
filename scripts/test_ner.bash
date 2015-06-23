@@ -16,7 +16,8 @@ curl -X POST http://localhost:4567/ner                         \
       }'
 
 #         "annotators":"tokenize,ssplit,pos,lemma,ner,parse",
-#         "annotators":"tokenize,ssplit,pos,lemma,ner",
-# \nHowever , Jill fell down .
+
+
+
 
 
