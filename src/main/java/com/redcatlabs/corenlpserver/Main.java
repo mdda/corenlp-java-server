@@ -53,6 +53,7 @@ public class Main {
         // ResponseTransformer  :: To json (for simple-to-serialize objects)
         // get("/hello", (request, response) -> new MyMessage("Hello World"), gson::toJson);
 
+        // See : http://stackoverflow.com/questions/29807175/how-to-ner-and-pos-tag-a-pre-tokenized-text-with-stanford-corenlp
         Properties props_ner = new Properties();
         props_ner.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner");
         props_ner.setProperty("tokenize.whitespace", "true");
