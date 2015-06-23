@@ -60,26 +60,31 @@ public class Main {
         
 /*
         curl -X POST http://localhost:4567/ner                       \
-          -d '{"doc":["Jack and Jill did n\'t go up the hill .\nHowever , Jill fell down ."],  \
-               "props":{                                             \
-                 "annotators":"tokenize,ssplit,pos,lemma,ner,parse", \
-                 "tokenize.whitespace":"true",                       \
-                 "ssplit.eolonly":"true"                             \
-               }                                                     \
+          -d '{"doc":["Jack and Jill did n\'t go up the hill .\nHowever , Jill fell down ."],
+               "props":{
+                 "annotators":"tokenize,ssplit,pos,lemma,ner,parse",
+                 "tokenize.whitespace":"true",
+                 "ssplit.eolonly":"true"
+               }
               }'
 */
         post("/ner", (request, response) -> {  
             JSONObject json = (JSONObject) JSONValue.parse(request.body());
+            System.out.println("Parsed Body");
             
             Properties props = props_ner; // Default
             if(json.containsKey("props")) {  // Test here for 'props' hash in POSTed JSON
+                System.out.println("Got new props");
                 props = JsonUtils.jsonToProperties((JSONObject)json.get("props"));
+                System.out.println("Parsed new props");
                 if(!pipelines.containsKey(props)) {
+                    System.out.println("Got new props - adding to cache");
                     pipelines.put(props, new StanfordCoreNLP(props));
                 }
             }
             
             StanfordCoreNLP pipeline = pipelines.get(props);
+            System.out.println("Got NER pipeline");
             
             return ((JSONArray)json.get("doc")).stream()
                 .map(doc -> {
@@ -90,7 +95,7 @@ public class Main {
                 .collect(Collectors.joining(",\n", "{\"ner\":[\n", "\n]}"));
         });
 
-        // We're assuming all json responses
+            // We're assuming all json responses
         after((req, res) -> {
             res.type("application/json");
         });
@@ -109,6 +114,7 @@ public class Main {
                 server_port = Integer.parseInt(portString);
             }
         }
+        System.out.println("Processes args");
         runServer(props, server_port);
     }
 }
